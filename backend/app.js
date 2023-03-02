@@ -1,5 +1,5 @@
 const express = require('express')
-const mongoose = require('mongoose') //require mongoose library functionaility
+const mongoose = require('mongoose') //require mongoose library functionality
 const morgan = require('morgan') // better debugging
 
 const cors = require('cors')
