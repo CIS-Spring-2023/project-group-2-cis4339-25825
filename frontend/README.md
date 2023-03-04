@@ -1,20 +1,29 @@
-# Data Platform Frontend
+# vue-practice
 
-This project uses [VueJS 3](https://vuejs.org/) with [Vite](https://vitejs.dev/) and [TailwindCSS](https://tailwindcss.com/).
-For form validation [Vuelidate](https://vuelidate-next.netlify.app/) is used.
+This template should help get you started developing with Vue 3 in Vite.
 
-## Project setup
+## Recommended IDE Setup
 
-    npm install
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-### Before startup
-You need to either have a local backend running and or use a cloud deployed backend.
+## Customize configuration
 
-Setup a .env file with following variables, e.g.:
+See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-    VITE_ROOT_API=http://localhost:3000
+## Project Setup
 
-VITE_ROOT_API is the URL for the backend API, either on localhost or in the cloud.
-### Compiles and hot-reloads for development
+```sh
+npm install
+```
 
-    npm run dev
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
