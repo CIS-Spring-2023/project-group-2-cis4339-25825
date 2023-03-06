@@ -20,6 +20,9 @@ router.get('/', (req, res, next) => {
     .limit(10)
 })
 
+
+// Test 
+
 // GET single client by ID
 router.get('/id/:id', (req, res, next) => {
   // use findOne instead of find to not return array

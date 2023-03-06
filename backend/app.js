@@ -17,14 +17,18 @@ app.use(
 )
 
 // sets up mongoose for the mongoDB connection
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => {
-    console.log('Database connection Success!')
-  })
-  .catch((err) => {
-    console.error('Mongo Connection Error', err)
-  })
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('Database connection Success!')
+})
+.catch((err) => {
+  console.error('Mongo Connection Error', err)
+})
+
+
 
 // declare port number for the api
 const PORT = process.env.PORT || 3000
