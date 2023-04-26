@@ -13,12 +13,15 @@ import pieChartData from '../assets/pie-data.js'
 //we have to register the registerables with Chart object
 Chart.register(...registerables);
 export default {
-  name: 'PieChart',
-  data() {
-    return {
-      pieChartData: pieChartData
-    }
+  props: {
+    label: {
+      type: Array,
+    },
+    chartData: {
+      type: Array,
+    },
   },
+
   //establish Chart object after mounting the component
   mounted() {
     const ctx = document.getElementById('pie-chart');
