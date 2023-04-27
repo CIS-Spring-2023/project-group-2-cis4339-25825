@@ -8,7 +8,6 @@
 
 <script>
 import { Chart, registerables } from 'chart.js'
-import pieChartData from '../assets/pie-data.js'
   
 //we have to register the registerables with Chart object
 Chart.register(...registerables);
@@ -25,7 +24,7 @@ export default {
   //establish Chart object after mounting the component
   mounted() {
     const ctx = document.getElementById('pie-chart');
-    new Chart(ctx, this.pieChartData);
+    new Chart(ctx, this.ChartData);
   }
 }
 </script>

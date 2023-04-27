@@ -36,7 +36,7 @@ export default {
       try {
         this.error = null
         this.loading = true
-        const response = await axios.get(`${apiURL}/events/attendance`)
+        const response = await axios.get(`https://localhost:3000/events/attendees`)
         this.recentEvents = response.data
         this.labels = response.data.map(
           (item) => `${item.name} (${this.formattedDate(item.date)})`
@@ -65,10 +65,10 @@ export default {
             try {
               this.error = null;
               this.loading = true;
-              const url = `${APIURL}`;
+              const url = `https://localhost:3000/clients`;
               const response = await axios.get(url);
               //"re-organizing" - mapping json from the response
-              this.labels = response.data.map((item) => item.Zip);
+              this.labels = response.data.map((item) => item.zip);
               this.Clients = response.data.map((item) => item.Clients);
             } catch (err) {
               if (err.response) {
