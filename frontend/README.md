@@ -12,6 +12,10 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
+Make Sure to configure your project before running 
+
+Include all the tailwind configuration
+
 ```sh
 npm install
 ```
