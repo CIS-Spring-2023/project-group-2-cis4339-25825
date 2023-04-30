@@ -1,53 +1,53 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router";
 
 // make all paths and names lowercase for consistency
 const routes = [
   {
-    path: '/',
+    path: "/",
     props: true,
-    component: () => import('../components/homePage.vue')
+    component: () => import("../components/homePage.vue"),
   },
   {
-    path: '/login',
+    path: "/login",
     props: true,
-    component: () => import('../components/loginPage.vue')
+    component: () => import("../components/loginPage.vue"),
   },
   {
-    path: '/intakeform',
-    name: 'intakeform',
+    path: "/intakeform",
+    name: "intakeform",
     props: true,
-    component: () => import('../components/intakeForm.vue')
+    component: () => import("../components/intakeForm.vue"),
   },
   {
-    path: '/findclient',
-    name: 'findclient',
-    component: () => import('../components/findClient.vue')
+    path: "/findclient",
+    name: "findclient",
+    component: () => import("../components/findClient.vue"),
   },
   {
-    path: '/updateclient/:id',
-    name: 'updateclient',
+    path: "/updateclient/:id",
+    name: "updateclient",
     props: true,
-    component: () => import('../components/updateClient.vue')
+    component: () => import("../components/updateClient.vue"),
   },
   {
-    path: '/eventform',
-    name: 'eventform',
-    component: () => import('../components/eventForm.vue')
+    path: "/eventform",
+    name: "eventform",
+    component: () => import("../components/eventForm.vue"),
   },
   {
-    path: '/findevents',
-    name: 'findevents',
-    component: () => import('../components/findEvents.vue')
+    path: "/findevents",
+    name: "findevents",
+    component: () => import("../components/findEvents.vue"),
   },
   {
-    path: '/eventdetails/:id',
-    name: 'eventdetails',
+    path: "/eventdetails/:id",
+    name: "eventdetails",
     props: true,
-    component: () => import('../components/eventDetails.vue')
-  }
-]
+    component: () => import("../components/eventDetails.vue"),
+  },
+];
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
-export default router
+  routes,
+});
+export default router;
