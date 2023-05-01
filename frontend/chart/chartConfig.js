@@ -1,3 +1,5 @@
+
+// This is the data object used for creating a chart
 export const data = {
   labels: ["Test100", "Soccer game", "Car Wash", "Tennis", "Golf"],
   datasets: [
@@ -7,8 +9,8 @@ export const data = {
     },
   ],
 };
-
+// These are the options for the chart
 export const options = {
   responsive: false,
-  maintainAspectRatio: false,
+  maintainAspectRatio: false, // The chart will not maintain aspect ratio
 };
