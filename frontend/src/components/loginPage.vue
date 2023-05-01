@@ -1,13 +1,13 @@
 <template>
   <div style="position: relative; display: flex; flex-direction: column; justify-content: center; align-content: center; align-items: center;">
     <div style="padding-top: 50px">
-      <div style="font-family: 'Bookman Old Style'; font-weight: bold; font-size: 20px"> Community Garden Sign in </div>
+      <div style="font-family: 'Bookman Old Style'; font-weight: bold; font-size: 20px"> ADMIN Sign in </div>
       <div style="align-items: center; text-align: center">
         <img src="/src/assets/login.png" width="120" height="120"  style="padding-top: 20px;"/>
       </div>
     </div>
     <div style="font-weight: bold; margin-top: 20px">
-      <i> Follow the instructions below to sign in to dashboard </i>
+      <i> Welcome To Our Project :) </i>
     </div>
     <div style="padding-top: 20px">
       <p>
