@@ -36,6 +36,7 @@ Setup a .env file with the following variables: MONGO_URL, PORT and ORG
 
     npm start
 
-## Postman Documentation
+# This is my connection string
+mongodb+srv://tesnpm st:test@cluster0.ktwp6yn.mongodb.net/test
 
-Can be found at <https://documenter.getpostman.com/view/23133138/2s83mdJiqh>
+

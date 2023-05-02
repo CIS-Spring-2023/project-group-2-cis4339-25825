@@ -1,5 +1,5 @@
 const express = require('express')
-const mongoose = require('mongoose') //require mongoose library functionality
+const mongoose = require('mongoose') //require mongoose library functionaility
 const morgan = require('morgan') // better debugging
 
 const cors = require('cors')
@@ -37,6 +37,8 @@ app.use(morgan('dev'))
 app.use('/clients', require('./routes/clients'))
 app.use('/events', require('./routes/events'))
 app.use('/org', require('./routes/org'))
+app.use('/services', require('./routes/services'))
+app.use('/users', require('./routes/users'))
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)

@@ -6,24 +6,29 @@ const org = process.env.ORG
 // importing data model schemas
 const { services } = require('../models/models')
 
-// GET services for org
+// GET 10 services for org
 router.get('/', (req, res, next) => {
-  services.find({ org: org }, (error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      return res.json(data)
-    }
-  })
+  services
+    .find({ org: org }, (error, data) => {
+      if (error) {
+        return next(error)
+      } else {
+        return res.json(data)
+      }
+    })
+    .limit(10)
 })
 
-// GET services for org with id
-router.get('/:id', (req, res, next) => {
-  services.findById(req.params.id, req.body, (error, data) => {
+// GET single service by ID
+router.get('/id/:id', (req, res, next) => {
+  // use findOne instead of find to not return array
+  services.findOne({ _id: req.params.id, org: org }, (error, data) => {
     if (error) {
       return next(error)
+    } else if (!data) {
+      res.status(400).send('Service not found')
     } else {
-      return res.json(data)
+      res.json(data)
     }
   })
 })
@@ -40,10 +45,23 @@ router.post('/', (req, res, next) => {
     }
   })
 })
-
-// PUT update service
-router.put('/:id', (req, res, next) => {
-  services.findByIdAndUpdate(req.params.id, req.body, (error, data) => {
+// GET services based on search query
+// Ex: '...?name=Food&searchBy=name'
+router.get('/search/', (req, res, next) => {
+  const dbQuery = { org: org }
+  switch (req.query.searchBy) {
+    case 'name':
+      // match event name, no anchor
+      dbQuery.name = { $regex: `${req.query.name}`, $options: 'i' }
+      break
+    case 'status':
+      // match service status
+      dbQuery.status = req.query.status
+      break
+    default:
+      return res.status(400).send('invalid searchBy')
+  }
+  services.find(dbQuery, (error, data) => {
     if (error) {
       return next(error)
     } else {
@@ -51,5 +69,21 @@ router.put('/:id', (req, res, next) => {
     }
   })
 })
+
+// PUT update service 
+router.put('/update/:id', (req, res, next) => {
+  const { id } = req.params;
+  const updatedService = req.body;
+
+  services.updateOne({ _id: id}, updatedService, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json({ message: 'Service updated successfully' });
+    }
+  });
+});
+
+
 
 module.exports = router

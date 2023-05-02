@@ -1,33 +1,7 @@
 const uuid = require('uuid')
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-
-// collection for users
-const UserSchema = new Schema(
-  {
-    _id: { type: String, default: uuid.v1 },
-    username: {
-      type: String,
-      required: true
-    },
-    password: {
-      type: String,
-      required: true
-    },
-    role: {
-      type: String,
-      required: false
-    },
-    orgs: {
-      type: [{ type: String, ref: 'org' }],
-      required: true,
-      validate: [(org) => org.length > 0, 'need at least one org']
-    }
-  },
-  {
-    collection: 'users'
-  }
-)
+const bcrypt = require('bcrypt')
 
 // collection for org
 const orgDataSchema = new Schema(
@@ -115,9 +89,11 @@ const eventDataSchema = new Schema(
       type: String,
       required: true
     },
+    //  services field referencing the service collection
     services: [
       {
-        type: String
+        type: String,
+        ref: 'service'
       }
     ],
     date: {
@@ -159,21 +135,25 @@ const eventDataSchema = new Schema(
 // collection for services
 const serviceDataSchema = new Schema(
   {
-    _id: { type: String, default: uuid.v1 },
+    _id: { 
+      type: String, 
+      default: uuid.v1
+    },
+    // org which this services belongs to
     org: {
       type: String,
       required: true
     },
+    // name of service
     name: {
       type: String,
       required: true
-    },
+    }
+    ,
+    // status of service (Active or Not Active)
     status: {
-      type: Boolean,
+      type: String,
       required: true
-    },
-    description: {
-      type: String
     }
   },
   {
@@ -181,12 +161,39 @@ const serviceDataSchema = new Schema(
   }
 )
 
+//collection for users
+const userDataSchema = new Schema({
+  username: String,
+  password: String,
+  role: String,
+  org: {
+    type: String,
+    required: true
+  }
+},
+{
+  collection: 'users'
+}
+);
+
+// hash the password
+userDataSchema.methods.generateHash = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+userDataSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
+
 // create models from mongoose schemas
 const clients = mongoose.model('client', clientDataSchema)
 const orgs = mongoose.model('org', orgDataSchema)
 const events = mongoose.model('event', eventDataSchema)
-const users = mongoose.model('user', UserSchema)
+
+const users = mongoose.model('user', userDataSchema)
+
 const services = mongoose.model('service', serviceDataSchema)
 
 // package the models in an object to export
-module.exports = { clients, orgs, events, users, services }
+module.exports = { clients, orgs, events , services, users}
